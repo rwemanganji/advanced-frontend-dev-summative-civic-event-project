@@ -24,6 +24,8 @@ router.use('/auth', auth);
 
 /**
  * Protected routes (require authentication)
+ * Each route file decides who gets in: authenticate = any logged-in user,
+ * authenticate + authorize(['admin']) = admins only.
  */
 router.use('/users', users);
 router.use('/events', events);

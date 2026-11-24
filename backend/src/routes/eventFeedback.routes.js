@@ -4,12 +4,12 @@ import * as Controller from '../controllers/eventFeedback.controller.js';
 
 const router = express.Router();
 
-// User routes
+// Any logged-in user can leave and edit their own feedback.
 router.post('/', authenticate, Controller.createFeedback);
 router.put('/:id', authenticate, Controller.updateFeedback);
 router.get('/my-feedback', authenticate, Controller.getUserFeedback);
 
-// Admin route to view all feedback for an event
+// Admin only: see all feedback for an event.
 router.get('/event/:event_id', authenticate, authorize(['admin']), Controller.getEventFeedback);
 
 export default router;

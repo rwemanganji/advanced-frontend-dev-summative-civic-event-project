@@ -1,0 +1,83 @@
+/* Shared component classes. Plain CSS because the Tailwind CDN cannot @apply in external files. */
+/* Brand palette: Maize #F8E347 (accent), Gunmetal #002428 (dark), Brunswick Green #105243 (secondary). */
+
+/* Visible focus ring on every interactive element. */
+:focus-visible { outline: 3px solid #105243; outline-offset: 2px; }
+/* On dark brand surfaces the ring switches to Maize so it stays visible. */
+header :focus-visible, .on-dark :focus-visible { outline-color: #F8E347; }
+main:focus { outline: none; }
+
+.skip-link { position: absolute; left: 1rem; top: -4rem; z-index: 100; background: #fff; color: #002428; padding: .75rem 1rem; border-radius: .75rem; font-weight: 600; }
+.skip-link:focus { top: 1rem; }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; min-height: 44px; padding: .625rem 1rem; border-radius: .75rem; font-weight: 600; transition: background-color .15s, transform .15s, box-shadow .15s; }
+.btn:not(:disabled):hover { transform: translateY(-1px); box-shadow: 0 2px 6px rgb(0 36 40 / .14); }
+.btn:disabled { opacity: .6; cursor: not-allowed; }
+.btn-primary { background: #F8E347; color: #002428; }
+.btn-primary:not(:disabled):hover { background: #EAD232; }
+.btn-primary:not(:disabled):active { background: #DCC422; transform: none; }
+.btn-secondary { background: #fff; color: #105243; border: 1px solid #105243; }
+.btn-secondary:not(:disabled):hover { background: #E8F0EC; }
+.btn-secondary:not(:disabled):active { background: #D3E2DC; transform: none; }
+.btn-danger { background: #B3261E; color: #fff; }
+.btn-danger:not(:disabled):hover { background: #8C1D18; }
+.btn-ghost { color: #105243; }
+.btn-ghost:not(:disabled):hover { background: #E8F0EC; }
+
+.input { width: 100%; padding: .625rem .875rem; border: 1px solid #667C7E; border-radius: .75rem; background: #fff; color: #002428; transition: border-color .15s, box-shadow .15s; }
+.input:focus { border-color: #105243; box-shadow: 0 0 0 3px rgb(16 82 67 / .15); }
+.input[aria-invalid="true"] { border: 2px solid #B3261E; }
+.label { display: block; margin-bottom: .375rem; font-weight: 600; color: #002428; }
+.hint { margin-top: .25rem; font-size: .875rem; color: #335053; }
+.field-error { margin-top: .375rem; font-size: .875rem; font-weight: 600; color: #B3261E; }
+.field-error:empty { display: none; }
+
+.card { background: #fff; border: 1px solid #D3E2DC; border-radius: .75rem; box-shadow: 0 1px 3px rgb(0 36 40 / .06); transition: box-shadow .2s, border-color .2s, transform .2s; }
+.card:hover { box-shadow: 0 6px 18px rgb(0 36 40 / .1); border-color: #B9D0C7; }
+/* Dashboard stat cards that link to their page. */
+.stat-link { color: inherit; text-decoration: none; }
+.stat-link:hover { border-color: #105243; transform: translateY(-2px); }
+.stat-link .stat-arrow { color: #667C7E; transition: color .15s; }
+.stat-link:hover .stat-arrow { color: #105243; }
+.stat-link:active { transform: none; }
+.link { color: #105243; text-decoration: underline; text-underline-offset: 2px; }
+
+.badge { display: inline-flex; align-items: center; gap: .25rem; padding: .125rem .5rem; border-radius: 999px; font-size: .75rem; font-weight: 700; }
+.badge-new { background: #F8E347; color: #002428; }
+.badge-muted { background: #E8F0EC; color: #002428; }
+.badge-success { background: #E8F0EC; color: #105243; }
+.badge-danger { background: #FBE4E2; color: #B3261E; }
+
+.nav-link { display: inline-flex; align-items: center; padding: .5rem .75rem; border-radius: .75rem; color: #fff; font-weight: 500; transition: background-color .15s; }
+.nav-link:hover, .nav-link-active { background: rgb(255 255 255 / .1); }
+.nav-link-active { color: #F8E347; text-decoration: underline; text-decoration-color: #F8E347; text-decoration-thickness: 2px; text-underline-offset: 6px; }
+.side-link { display: block; padding: .5rem .75rem; border-radius: .75rem; color: #105243; font-weight: 600; white-space: nowrap; background: #E8F0EC; }
+.side-link:hover { background: #D3E2DC; }
+.side-link.nav-link-active { background: #002428; color: #F8E347; text-decoration: none; }
+.menu-item { display: block; padding: .5rem .75rem; border-radius: .5rem; }
+.menu-item:hover { background: #E8F0EC; }
+
+.notif-item { display: block; width: 100%; text-align: left; padding: .875rem; border: 1px solid #D3E2DC; border-radius: .75rem; transition: background-color .15s; }
+.notif-item:hover { background: #E8F0EC; }
+.notif-unread { background: #F4F8F6; border-left: 4px solid #105243; }
+
+/* Brand logo tile: fixed square so it never stretches. */
+.brand-logo { aspect-ratio: 1 / 1; object-fit: contain; border-radius: .5rem; flex-shrink: 0; }
+
+.drawer-panel { transform: translateX(100%); transition: transform .25s ease; }
+.drawer-panel.drawer-open { transform: translateX(0); }
+
+/* Loading placeholder shimmer. */
+.skeleton { background: linear-gradient(90deg, #E8F0EC 25%, #F4F8F6 50%, #E8F0EC 75%); background-size: 200% 100%; animation: shimmer 1.4s infinite linear; }
+@keyframes shimmer { to { background-position: -200% 0; } }
+
+/* Star rating: the radio stays focusable, so show its ring on the label. */
+.star-input:focus-visible + label { outline: 3px solid #105243; outline-offset: 2px; }
+.star-on { color: #002428; }
+.star-on svg { fill: #F8E347; }
+.star-off { color: #667C7E; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+  .btn:not(:disabled):hover, .stat-link:hover { transform: none; }
+}

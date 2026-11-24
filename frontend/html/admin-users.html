@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Manage users | CivicEvents</title>
+  <link rel="icon" type="image/png" href="../assets/favicon.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../js/theme.js"></script>
+  <link rel="stylesheet" href="../css/custom.css">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="../js/config.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/guards.js"></script>
+  <script src="../js/icons.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/forms.js"></script>
+  <script src="../js/notifications.js"></script>
+  <script src="../js/layout.js"></script>
+  <script src="../js/users.js"></script>
+  <script>
+    // Role guard: only admins can open this page. Normal users are sent to the 403 page.
+    requireAdmin();
+  </script>
+</head>
+<body class="min-h-screen bg-white font-sans text-ink antialiased" data-page="admin-users">
+<div id="admin-shell" class="mx-auto max-w-7xl px-4 py-8">
+    <main class="min-w-0 flex-1">
+      <h1 class="text-3xl font-bold">Manage users</h1>
+      <p class="mt-1 text-slate-700">View accounts and enable or disable access. Roles cannot be changed here.</p>
+      <div class="card relative mt-6 overflow-x-auto">
+        <table class="w-full min-w-[720px] text-left text-sm">
+          <caption class="sr-only">All user accounts</caption>
+          <thead class="bg-mist"><tr><th scope="col" class="p-3">Name</th><th scope="col" class="p-3">Email</th><th scope="col" class="p-3">Role</th>
+            <th scope="col" class="p-3">Status</th><th scope="col" class="p-3">Joined</th><th scope="col" class="p-3">Actions</th></tr></thead>
+          <tbody id="user-rows"></tbody>
+        </table>
+      </div>
+      <div id="pager" class="mt-6"></div>
+    </main>
+  </div>
+  <script>onPage(Users.init);</script>
+</body>
+</html>

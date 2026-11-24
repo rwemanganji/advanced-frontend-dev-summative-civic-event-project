@@ -7,11 +7,12 @@ import { uploadEventImage } from '../middlewares/upload.middleware.js';
 
 const router = express.Router();
 
-// All logged-in users
+// All logged-in users (admins and normal users) can view events.
 router.get('/', authenticate, controller.list);
 router.get('/:id', authenticate, controller.get);
 
 // Admin-only routes (now supports image upload)
+// authorize(['admin']) blocks normal users with a 403.
 router.post(
     '/',
     authenticate,
@@ -35,6 +36,7 @@ router.put(
     controller.update
 );
 
+// Only admins can delete events.
 router.delete('/:id', authenticate, authorize(['admin']), controller.remove);
 
 export default router;

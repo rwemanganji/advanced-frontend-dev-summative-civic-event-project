@@ -63,7 +63,7 @@ const videoFilter = (req, file, cb) => {
 export const uploadPromoVideo = multer({
     storage: videoStorage,
     fileFilter: videoFilter,
-    limits: { fileSize: 8 * 1024 * 1024 } // 8 MB limit
+    limits: { fileSize: 100 * 1024 * 1024 } // 100 MB limit
 });
 
 

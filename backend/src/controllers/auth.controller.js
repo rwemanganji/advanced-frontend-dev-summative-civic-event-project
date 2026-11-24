@@ -55,6 +55,7 @@ export const login = async (req, res, next) => {
         const isMatch = await bcrypt.compare(password, user.password_hash);
         if (!isMatch) return res.status(401).json({ status: 401, message: 'Invalid credentials' });
 
+        // The role is put inside the token so every later request can be checked for admin access.
         const token = jwt.sign({ id: user.id, role: user.role }, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
 
         return res.status(200).json({

@@ -7,11 +7,11 @@ import validateBody from '../middlewares/validateBody.middleware.js';
 
 const router = express.Router();
 
-// Public (authenticated users)
+// Any logged-in user can view promos.
 router.get('/', authenticate, controller.list);
 router.get('/:id', authenticate, controller.get);
 
-// Admin-only routes
+// Admin-only routes: authorize(['admin']) blocks normal users with a 403.
 router.post(
     '/',
     authenticate,

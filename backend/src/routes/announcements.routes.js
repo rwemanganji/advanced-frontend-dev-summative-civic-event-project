@@ -7,9 +7,11 @@ import validateBody from '../middlewares/validateBody.middleware.js';
 
 const router = express.Router();
 
+// Any logged-in user can read announcements.
 router.get('/', authenticate, controller.getAllAnnouncements);
 router.get('/:id', authenticate, controller.getAnnouncementById);
 
+// Admin only from here down: authorize(['admin']) blocks normal users with a 403.
 router.post(
     '/',
     authenticate,

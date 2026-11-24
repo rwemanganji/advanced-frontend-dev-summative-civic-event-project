@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Create announcement | CivicEvents</title>
+  <link rel="icon" type="image/png" href="../assets/favicon.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../js/theme.js"></script>
+  <link rel="stylesheet" href="../css/custom.css">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="../js/config.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/guards.js"></script>
+  <script src="../js/icons.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/forms.js"></script>
+  <script src="../js/notifications.js"></script>
+  <script src="../js/layout.js"></script>
+  <script src="../js/announcements.js"></script>
+  <script>
+    // Role guard: only admins can open this page. Normal users are sent to the 403 page.
+    requireAdmin();
+  </script>
+</head>
+<body class="min-h-screen bg-white font-sans text-ink antialiased" data-page="announcement-form">
+<div id="admin-shell" class="mx-auto max-w-7xl px-4 py-8">
+    <main class="min-w-0 flex-1">
+      <nav aria-label="Breadcrumb" class="mb-4 text-sm"><a class="link" href="announcements.html">Back to announcements</a></nav>
+      <h1 id="page-title" class="text-3xl font-bold">Create announcement</h1>
+      <p class="hint">Fields marked with * are required.</p>
+      <form id="announcement-form" class="mt-6 max-w-2xl space-y-5" novalidate>
+        <div data-form-error class="hidden rounded-xl border border-danger bg-white p-4 text-danger" role="alert"></div>
+        <div>
+          <label for="title" class="label">Title *</label>
+          <input id="title" name="title" type="text" class="input" required data-name="Title">
+        </div>
+        <div id="audio-group">
+        <div>
+          <label for="audio" class="label">Audio file *</label>
+          <input id="audio" name="audio" type="file" class="input" required data-name="Audio file" aria-describedby="audio-hint" accept=".mp3,.wav,.m4a,.ogg">
+          <p id="audio-hint" class="hint">MP3, WAV, M4A or OGG, up to 5 MB.</p>
+        </div>
+        <div id="audio-preview" aria-live="polite"></div>
+        </div>
+        <p id="audio-edit-note" class="hidden rounded-xl bg-mist p-4 text-sm">The API does not replace audio on edit. To change the recording, delete this announcement and upload a new one.</p>
+        <div class="flex items-start gap-3 rounded-xl bg-mist p-4">
+          <input id="published" name="published" type="checkbox" class="mt-1 h-5 w-5 accent-[#105243]" checked aria-describedby="published-hint">
+          <div><label for="published" class="font-semibold">Published</label><p id="published-hint" class="hint">Published announcements are visible to all users.</p></div>
+        </div>
+
+        <div id="upload-progress" class="hidden" aria-live="polite">
+          <p class="label">Upload progress <span data-pct>0%</span></p>
+          <div role="progressbar" aria-label="Upload progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" class="h-3 rounded-full bg-mist"><div class="h-3 rounded-full bg-harbor transition-all" style="width:0%"></div></div>
+        </div>
+        <div class="flex flex-wrap gap-3"><button type="submit" class="btn btn-primary">Save announcement</button>
+          <a class="btn btn-secondary" href="announcements.html">Cancel</a></div>
+      </form>
+    </main>
+  </div>
+  <script>onPage(Announcements.initForm);</script>
+</body>
+</html>

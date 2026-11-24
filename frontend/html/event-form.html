@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Create event | CivicEvents</title>
+  <link rel="icon" type="image/png" href="../assets/favicon.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../js/theme.js"></script>
+  <link rel="stylesheet" href="../css/custom.css">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="../js/config.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/guards.js"></script>
+  <script src="../js/icons.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/forms.js"></script>
+  <script src="../js/notifications.js"></script>
+  <script src="../js/layout.js"></script>
+  <script src="../js/events.js"></script>
+  <script>
+    // Role guard: only admins can open this page. Normal users are sent to the 403 page.
+    requireAdmin();
+  </script>
+</head>
+<body class="min-h-screen bg-white font-sans text-ink antialiased" data-page="event-form">
+<div id="admin-shell" class="mx-auto max-w-7xl px-4 py-8">
+    <main class="min-w-0 flex-1">
+      <nav aria-label="Breadcrumb" class="mb-4 text-sm"><a class="link" href="events.html">Back to events</a></nav>
+      <h1 id="page-title" class="text-3xl font-bold">Create event</h1>
+      <p class="hint">Fields marked with * are required.</p>
+      <form id="event-form" class="mt-6 max-w-2xl space-y-5" novalidate>
+        <div data-form-error class="hidden rounded-xl border border-danger bg-white p-4 text-danger" role="alert"></div>
+        <div>
+          <label for="title" class="label">Title *</label>
+          <input id="title" name="title" type="text" class="input" required data-name="Title">
+        </div>
+        <div>
+          <label for="description" class="label">Description</label>
+          <textarea id="description" name="description" rows="4" class="input"></textarea>
+        </div>
+        <div>
+          <label for="location" class="label">Location *</label>
+          <input id="location" name="location" type="text" class="input" required data-name="Location" aria-describedby="location-hint">
+          <p id="location-hint" class="hint">Shown on the event page with a map link.</p>
+        </div>
+        <div class="grid gap-5 sm:grid-cols-2">
+        <div>
+          <label for="starts_at" class="label">Starts *</label>
+          <input id="starts_at" name="starts_at" type="datetime-local" class="input" required data-name="Starts">
+        </div>
+        <div>
+          <label for="ends_at" class="label">Ends *</label>
+          <input id="ends_at" name="ends_at" type="datetime-local" class="input" required data-name="Ends" aria-describedby="ends_at-hint">
+          <p id="ends_at-hint" class="hint">Must be after the start time.</p>
+        </div>
+        </div>
+        <p class="flex gap-2 rounded-xl bg-mist p-4 text-sm"><span class="font-semibold">Publishing:</span> events go live for all users as soon as you save. The API has no draft setting for events.</p>
+        <div>
+          <label for="image" class="label">Event image</label>
+          <input id="image" name="image" type="file" class="input" aria-describedby="image-hint" accept=".jpg,.jpeg,.png,.gif">
+          <p id="image-hint" class="hint">Optional. JPG, PNG or GIF, up to 2 MB.</p>
+        </div>
+        <div id="image-preview" aria-live="polite"></div>
+        <div id="current-image"></div>
+
+        <div id="upload-progress" class="hidden" aria-live="polite">
+          <p class="label">Upload progress <span data-pct>0%</span></p>
+          <div role="progressbar" aria-label="Upload progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" class="h-3 rounded-full bg-mist"><div class="h-3 rounded-full bg-harbor transition-all" style="width:0%"></div></div>
+        </div>
+        <div class="flex flex-wrap gap-3"><button type="submit" class="btn btn-primary">Save event</button>
+          <a class="btn btn-secondary" href="events.html">Cancel</a></div>
+      </form>
+    </main>
+  </div>
+  <script>onPage(EventsPage.initForm);</script>
+</body>
+</html>

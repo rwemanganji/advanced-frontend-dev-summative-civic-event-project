@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My profile | CivicEvents</title>
+  <link rel="icon" type="image/png" href="../assets/favicon.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../js/theme.js"></script>
+  <link rel="stylesheet" href="../css/custom.css">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="../js/config.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/guards.js"></script>
+  <script src="../js/icons.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/forms.js"></script>
+  <script src="../js/notifications.js"></script>
+  <script src="../js/layout.js"></script>
+  <script src="../js/profile.js"></script>
+  <script>
+    // Login guard: any signed-in user can open this page (admin or normal user).
+    requireLogin();
+  </script>
+</head>
+<body class="min-h-screen bg-white font-sans text-ink antialiased" data-page="profile">
+<main class="mx-auto max-w-2xl px-4 py-8">
+    <h1 class="text-3xl font-bold">My profile</h1>
+    <dl class="mt-6 grid grid-cols-2 gap-4 rounded-xl bg-mist p-5 sm:grid-cols-3">
+      <div><dt class="text-sm font-semibold">Role</dt><dd id="role" class="capitalize">-</dd></div>
+      <div><dt class="text-sm font-semibold">Account status</dt><dd id="status">-</dd></div>
+      <div><dt class="text-sm font-semibold">Member since</dt><dd id="joined">-</dd></div>
+    </dl>
+    <p class="hint">Role and status are managed by administrators and cannot be changed here.</p>
+    <form id="profile-form" class="card mt-6 space-y-5 p-6" novalidate>
+      <h2 class="text-xl font-semibold">Edit details</h2>
+      <div data-form-error class="hidden rounded-xl border border-danger p-4 text-danger" role="alert"></div>
+      <div><label for="full_name" class="label">Full name</label><input id="full_name" name="full_name" type="text" autocomplete="name" class="input"></div>
+      <div><label for="email" class="label">Email</label><input id="email" name="email" type="email" autocomplete="email" class="input"></div>
+      <button type="submit" class="btn btn-primary">Save changes</button>
+    </form>
+  </main>
+  <script>onPage(Profile.init);</script>
+</body>
+</html>

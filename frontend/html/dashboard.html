@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard | CivicEvents</title>
+  <link rel="icon" type="image/png" href="../assets/favicon.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../js/theme.js"></script>
+  <link rel="stylesheet" href="../css/custom.css">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="../js/config.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/guards.js"></script>
+  <script src="../js/icons.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/forms.js"></script>
+  <script src="../js/notifications.js"></script>
+  <script src="../js/layout.js"></script>
+  <script src="../js/dashboard.js"></script>
+  <script>
+    // Login guard: any signed-in user can open this page (admin or normal user).
+    requireLogin();
+  </script>
+</head>
+<body class="min-h-screen bg-white font-sans text-ink antialiased" data-page="dashboard">
+<div id="admin-shell" class="mx-auto max-w-7xl px-4 py-8">
+    <main class="min-w-0 flex-1">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div><h1 id="page-title" class="text-3xl font-bold">Dashboard</h1><p id="updated" class="hint" aria-live="polite"></p></div>
+        <button type="button" id="refresh" class="btn btn-secondary"><svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.6m15.3 2A8 8 0 004.6 9m0 0H9m11 11v-5h-.6m0 0a8 8 0 01-15.3-2m15.3 2H15"/></svg>Refresh data</button>
+      </div>
+      <section aria-label="Summary" id="stats" class="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4"></section>
+      <section aria-label="Charts" id="charts" class="mt-6 grid gap-6 lg:grid-cols-2"></section>
+    </main>
+  </div>
+  <script>onPage(Dashboard.init);</script>
+</body>
+</html>

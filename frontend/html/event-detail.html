@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Event details | CivicEvents</title>
+  <link rel="icon" type="image/png" href="../assets/favicon.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../js/theme.js"></script>
+  <link rel="stylesheet" href="../css/custom.css">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="../js/config.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/guards.js"></script>
+  <script src="../js/icons.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/forms.js"></script>
+  <script src="../js/notifications.js"></script>
+  <script src="../js/layout.js"></script>
+  <script src="../js/registrations.js"></script>
+  <script src="../js/events.js"></script>
+  <script src="../js/feedback.js"></script>
+  <script src="../js/event-detail.js"></script>
+  <script>
+    // Login guard: any signed-in user can open this page (admin or normal user).
+    requireLogin();
+  </script>
+</head>
+<body class="min-h-screen bg-white font-sans text-ink antialiased" data-page="events">
+<main class="mx-auto max-w-6xl px-4 py-8">
+    <nav aria-label="Breadcrumb" class="mb-4 text-sm">
+      <ol class="flex flex-wrap gap-2"><li><a class="link" href="events.html">Events</a></li>
+        <li aria-hidden="true">/</li><li id="crumb-current" aria-current="page">Details</li></ol>
+    </nav>
+    <h1 id="page-title" class="text-3xl font-bold">Event details</h1>
+    <div id="event" class="mt-6"></div>
+    <!-- Admin only: hidden by default, shown to admins by applyRoleVisibility() in guards.js -->
+    <section data-admin-only class="hidden mt-10" aria-labelledby="reg-title">
+      <h2 id="reg-title" class="text-2xl font-semibold">Registrants <span id="registrant-count" class="badge badge-muted align-middle"></span></h2>
+      <div id="registrant-list" class="mt-4"></div>
+    </section>
+    <section class="mt-10" aria-labelledby="fb-title">
+      <h2 id="fb-title" class="text-2xl font-semibold">Feedback</h2>
+      <div id="feedback-summary" class="mt-3"></div>
+      <ul id="feedback-list" class="mt-4 grid gap-4 sm:grid-cols-2"></ul>
+      <div id="my-feedback" class="mt-6"></div>
+      <form id="feedback-form" class="card mt-6 hidden max-w-xl space-y-4 p-6" novalidate>
+        <h3 class="text-lg font-semibold">Rate this event</h3>
+        <div data-form-error class="hidden rounded-xl border border-danger p-4 text-danger" role="alert"></div>
+        <fieldset data-field>
+          <legend class="label">Your rating *</legend>
+          <div id="stars" class="flex gap-1"></div>
+          <p id="rating-text" class="hint" aria-live="polite"></p>
+        </fieldset>
+        <div>
+          <label for="comment" class="label">Comment</label>
+          <textarea id="comment" name="comment" rows="3" maxlength="500" class="input" aria-describedby="comment-hint"></textarea>
+          <p id="comment-hint" class="hint">Optional. Up to 500 characters.</p>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit feedback</button>
+      </form>
+    </section>
+  </main>
+  <script>onPage(EventDetail.init);</script>
+</body>
+</html>

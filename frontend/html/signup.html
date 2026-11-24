@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign up | CivicEvents</title>
+  <link rel="icon" type="image/png" href="../assets/favicon.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../js/theme.js"></script>
+  <link rel="stylesheet" href="../css/custom.css">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="../js/config.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/guards.js"></script>
+  <script src="../js/icons.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/forms.js"></script>
+  <script src="../js/notifications.js"></script>
+  <script src="../js/layout.js"></script>
+  <script src="../js/auth-forms.js"></script>
+  <script src="../js/password-toggle.js"></script>
+  <script>
+    // Guest guard: signed-in users go straight to the dashboard.
+    requireGuest();
+  </script>
+</head>
+<body class="min-h-screen bg-[#F4F8F6] font-sans text-ink antialiased" data-page="signup">
+<main class="mx-auto max-w-md px-4 py-12">
+    <img src="../assets/logo.png" alt="CivicEvents logo" class="brand-logo mb-5 h-14 w-14 shadow-sm" width="56" height="56">
+    <h1 class="text-3xl font-bold">Create your account</h1>
+    <p class="mt-1 text-slate-700">Register for events, leave feedback and get city updates.</p>
+    <form id="signup-form" class="card mt-6 space-y-5 p-6" novalidate>
+      <div data-form-error class="hidden rounded-xl border border-danger p-4 text-danger" role="alert"></div>
+      <div><label for="full_name" class="label">Full name</label><input id="full_name" name="full_name" type="text" autocomplete="name" class="input"></div>
+      <div><label for="email" class="label">Email</label><input id="email" name="email" type="email" autocomplete="email" class="input"></div>
+      <div>
+        <label for="password" class="label">Password</label>
+        <div class="relative" data-field>
+          <input id="password" name="password" type="password" autocomplete="new-password" class="input pr-12" aria-describedby="strength-text password-rules">
+          <button type="button" data-password-toggle="password" class="absolute right-1 top-1/2 -translate-y-1/2 rounded-lg p-2 text-harbor hover:bg-mist" aria-controls="password" aria-pressed="false" aria-label="Show password"><svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0zM2.5 12C3.8 7.9 7.6 5 12 5s8.2 2.9 9.5 7c-1.3 4.1-5.1 7-9.5 7s-8.2-2.9-9.5-7z"/></svg></button>
+        </div>
+        <div class="mt-2 h-2 rounded-full bg-mist" aria-hidden="true"><div id="strength-bar" class="h-2 rounded-full" style="width:0"></div></div>
+        <p id="strength-text" class="hint" aria-live="polite">Password strength: not set</p>
+        <ul id="password-rules" class="mt-2 space-y-1 text-sm">
+          <li id="rule-length"></li><li id="rule-case"></li><li id="rule-number"></li><li id="rule-special"></li>
+        </ul>
+      </div>
+      <div>
+        <label for="confirm_password" class="label">Confirm password</label>
+        <div class="relative" data-field>
+          <input id="confirm_password" name="confirm_password" type="password" autocomplete="new-password" class="input pr-12" aria-describedby="match-text">
+          <button type="button" data-password-toggle="confirm_password" class="absolute right-1 top-1/2 -translate-y-1/2 rounded-lg p-2 text-harbor hover:bg-mist" aria-controls="confirm_password" aria-pressed="false" aria-label="Show password"><svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0zM2.5 12C3.8 7.9 7.6 5 12 5s8.2 2.9 9.5 7c-1.3 4.1-5.1 7-9.5 7s-8.2-2.9-9.5-7z"/></svg></button>
+        </div>
+        <p id="match-text" class="hint" aria-live="polite"></p>
+      </div>
+      <button type="submit" id="signup-btn" class="btn btn-primary w-full" aria-describedby="signup-hint">Create account</button>
+      <p id="signup-hint" class="hint text-center">The button turns on once your password is strong and both passwords match.</p>
+      <p class="text-center text-sm">Already have an account? <a class="link" href="login.html">Log in</a></p>
+    </form>
+  </main>
+  <script>onPage(AuthForms.initSignup);</script>
+</body>
+</html>

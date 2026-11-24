@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Notifications | CivicEvents</title>
+  <link rel="icon" type="image/png" href="../assets/favicon.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../js/theme.js"></script>
+  <link rel="stylesheet" href="../css/custom.css">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="../js/config.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/guards.js"></script>
+  <script src="../js/icons.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/forms.js"></script>
+  <script src="../js/notifications.js"></script>
+  <script src="../js/layout.js"></script>
+  <script>
+    // Login guard: any signed-in user can open this page (admin or normal user).
+    requireLogin();
+  </script>
+</head>
+<body class="min-h-screen bg-white font-sans text-ink antialiased" data-page="notifications">
+<main class="mx-auto max-w-3xl px-4 py-8">
+    <h1 class="text-3xl font-bold">Notifications</h1>
+    <div class="mt-4 flex flex-wrap items-center justify-between gap-4">
+      <fieldset class="flex gap-2"><legend class="sr-only">Show</legend>
+        <label class="flex items-center gap-2 rounded-xl bg-mist px-3 py-2"><input type="radio" name="filter" value="all" checked class="accent-[#105243]">All</label>
+        <label class="flex items-center gap-2 rounded-xl bg-mist px-3 py-2"><input type="radio" name="filter" value="unread" class="accent-[#105243]">Unread only</label>
+      </fieldset>
+      <button type="button" id="read-all" class="btn btn-secondary">Mark all as read</button>
+    </div>
+    <ul id="inbox-list" class="mt-6 space-y-3" aria-live="polite"></ul>
+  </main>
+  <script>onPage(Notifs.initInbox);</script>
+</body>
+</html>

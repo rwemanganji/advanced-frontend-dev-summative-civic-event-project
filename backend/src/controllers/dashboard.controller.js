@@ -2,7 +2,8 @@ import * as Dashboard from '../models/dashboard.model.js';
 
 export const getAdminDashboard = async (req, res, next) => {
     try {
-        // Only admin can access this
+        // Extra safety check: the route already uses authorize(['admin']),
+        // but normal users are blocked here too, just in case.
         if (req.user.role !== 'admin') {
             return res.status(403).json({ message: 'Access denied. Admins only.' });
         }
